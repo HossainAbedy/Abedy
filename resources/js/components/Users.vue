@@ -181,7 +181,9 @@
                 })
             },
             loadUsers(){
+            //   if(this.$gate.isAdminOrAuthor()){
                  axios.get('api/user').then(({data}) => (this.users=data.data));
+                // }
             },
             createUser(){
                 this.$Progress.start();
@@ -200,12 +202,21 @@
                 })
             },
         },
-        created(){
-                this.loadUsers();
-                // setInterval(() => {this.loadUsers()}, 3000);
-                Fire.$on('afterCreate',() => {
-                    this.loadUsers();
-                });
+        created() {
+            Fire.$on('searching',() => {
+                let query = this.$parent.search;
+                axios.get('api/findUser?q=' + query)
+                .then((data) => {
+                    this.users = data.data
+                })
+                .catch(() => {
+                })
+            })
+           this.loadUsers();
+           Fire.$on('AfterCreate',() => {
+               this.loadUsers();
+           });
+        //    setInterval(() => this.loadUsers(), 3000);
         }
     }
 </script>

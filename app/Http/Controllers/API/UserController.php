@@ -9,10 +9,11 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth:api');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+      
+    }
     /**
      * Display a listing of the resource.
      *
@@ -21,9 +22,9 @@ class UserController extends Controller
 
     public function index()
     {
-        // if (\Gate::allows('isAdmin') || \Gate::allows('isAuthor')) {
+        if (\Gate::allows('isAdmin') || \Gate::allows('isAuthor')) {
             return User::latest()->paginate(5);
-        // }
+        }
     }
 
     /**
@@ -45,6 +46,7 @@ class UserController extends Controller
             'type' => $request['type'],
             'bio' => $request['bio'],
             'photo' => $request['photo'],
+            'cphoto' => $request['cphoto'],
             'password' => Hash::make($request['password']),
         ]);
 
@@ -66,6 +68,16 @@ class UserController extends Controller
             $userPhoto = public_path('img/profile/').$currentPhoto;
             if(file_exists($userPhoto)){
                 @unlink($userPhoto);
+            }
+        }
+        $currentcPhoto = $user->cphoto;
+        if($request->cphoto != $currentcPhoto){
+            $name = time().'.' . explode('/', explode(':', substr($request->cphoto, 0, strpos($request->cphoto, ';')))[1])[1];
+            \Image::make($request->cphoto)->save(public_path('img/cover/').$name);
+            $request->merge(['cphoto' => $name]);
+            $usercPhoto = public_path('img/cover/').$currentcPhoto;
+            if(file_exists($usercPhoto)){
+                @unlink($usercPhoto);
             }
         }
         if(!empty($request->password)){
@@ -118,7 +130,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        // $this->authorize('isAdmin');
+        $this->authorize('isAdmin');
         $user = User::findOrFail($id);
         // delete the user
         $user->delete();
