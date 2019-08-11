@@ -8,7 +8,8 @@
 </p>
 
 ## About Laravel 
-AdminLTE version (npm install admin-lte@v3.0.0-alpha.2 --save)
+AdminLTE (npm install admin-lte@v3.0.0-alpha.2 --save)
+Fontawesome (npm install --save-dev @fortawesome/fontawesome-free)
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
