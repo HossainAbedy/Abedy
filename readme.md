@@ -9,16 +9,17 @@
 
 ## About Laravel
 /*APP
-1.AdminLTE (npm install admin-lte@v3.0.0-alpha.2 --save)
-2.Fontawesome (npm install --save-dev @fortawesome/fontawesome-free)
-3.Sweet alert (npm istall sweetalert2 --save)
-4.Vue progressbar (npm install vueprogressbar --save)
-5.Moment
-6.Gate
-7.ACL
-8.Passport
-8.Authentication
-9.Api
+1.AdminLTE (npm install admin-lte@v3.0.0-alpha.2 --save).
+2.Fontawesome (npm install --save-dev @fortawesome/fontawesome-free).
+3.Sweet alert (npm istall sweetalert2 --save).
+4.Vue progressbar (npm install vueprogressbar --save).
+5.Moment.
+6.Gate.
+7.ACL.
+8.Passport.
+8.Authentication.
+9.Api.
+10.CustomeEvents
 */
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
